@@ -3,18 +3,13 @@ import React, { useContext, useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { userContext } from '../../App';
 
-export default function Welcome() {
-    const [name, setName, page, setPage] = useContext(userContext)
+export default function Home() {
+    const [name, setName] = useContext(userContext)
     return (
         <View style={styles.container}>
-            <Text>Welcome to</Text>
+
             <Text style={{ fontSize: '30px', margin: '20px' }}>AskAnything</Text>
-            <Text>Enter your name :</Text>
-            <TextInput placeholder='Name' onChangeText={text => setName(text)}></TextInput>
-            <Button onPress={() => setPage('home')}>
-                <Text>Continue</Text>
-                Continue
-            </Button>
+            <Text style={{ fontSize: '30px', margin: '20px' }}>Welcome back {name}</Text>
         </View>
     );
 }
