@@ -10,7 +10,7 @@ export default function Welcome() {
             <Text>Welcome to</Text>
             <Text style={{ fontSize: '30px', margin: '20px' }}>AskAnything</Text>
             <Text>Enter your name :</Text>
-            <TextInput placeholder='Name' onChangeText={text => setName(text)}></TextInput>
+            <TextInput style={styles.input} placeholder='Name' onChangeText={text => setName(text)}></TextInput>
             <Button onPress={() => setPage('home')}>
                 <Text>Continue</Text>
                 Continue
@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
         fontSize: '30px'
     },
     input: {
-        borderColor: 'lightgray',
-        border: '1px solid gray',
-        padding: '5px 10px'
+        border: '1px solid lightgray',
+        padding: '10px',
+        borderRadius: '5px',
+        outline: 'none'
     }
 });
