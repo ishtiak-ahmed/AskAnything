@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import { userContext } from '../../App';
 import Question from '../Question/Question';
 
 export default function Home() {
-    const [name, setName] = useContext(userContext)
+    const [user, setUser] = useContext(userContext)
     const [posts, setPosts] = useState([])
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/posts')
@@ -16,8 +16,9 @@ export default function Home() {
     return (
         <View style={styles.container}>
             <View style={styles.navbar}>
-                <Text style={{ fontSize: '20px', flex: '1', marginRight: '2em' }}>AskAnything</Text>
-                <Text style={{ fontSize: '20px', flex: '1' }}>{name}</Text>
+                <Text style={{ fontSize: '20px', flex: 1, marginRight: '2em' }}>AskAnything</Text>
+                <Text style={{ fontSize: '20px', flex: 1 }}>{user.fullName}</Text>
+                <Image source={{ uri: user.photo }} style={{ height: '50px', width: '50px', borderRadius: '50%' }}></Image>
             </View>
             {
                 posts.map(post => <Question key={post.id} question={post.title}></Question>)

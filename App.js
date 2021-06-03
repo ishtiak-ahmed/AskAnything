@@ -6,10 +6,10 @@ import Welcome from './Components/Welcome/Welcome';
 
 export const userContext = createContext()
 export default function App() {
-  const [name, setName] = useState('')
+  const [user, setUser] = useState({})
   const [page, setPage] = useState('welcome')
   return (
-    <userContext.Provider value={[name, setName, page, setPage]}>
+    <userContext.Provider value={[user, setUser, page, setPage]}>
       <>
         {
           page === 'welcome' ?
