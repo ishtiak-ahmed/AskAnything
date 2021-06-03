@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: 30,
-        // padding: '10px'
+        padding: 10
     },
     navbar: {
         flex: 1,
