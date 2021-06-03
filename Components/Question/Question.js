@@ -4,7 +4,7 @@ import { View, StyleSheet, Text } from 'react-native'
 export default function Question({ question }) {
     return (
         <View>
-            <Text >What are the advantage fo React Native? {question}</Text>
+            <Text >{question}</Text>
             <View style={styles.buttonGroup}>
                 <button>UpVote</button>
                 <button>DownVote</button>

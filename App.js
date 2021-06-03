@@ -7,7 +7,7 @@ import Welcome from './Components/Welcome/Welcome';
 export const userContext = createContext()
 export default function App() {
   const [user, setUser] = useState({})
-  const [page, setPage] = useState('welcome')
+  const [page, setPage] = useState('home')
   return (
     <userContext.Provider value={[user, setUser, page, setPage]}>
       <>

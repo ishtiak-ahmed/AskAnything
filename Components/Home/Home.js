@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import { userContext } from '../../App';
+import AskQuestion from '../AskQuestion/AskQuestion';
 import Question from '../Question/Question';
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
                 <Text style={{ fontSize: '20px', flex: 1 }}>{user.fullName}</Text>
                 <Image source={{ uri: user.photo }} style={{ height: '50px', width: '50px', borderRadius: '50%' }}></Image>
             </View>
+            <AskQuestion></AskQuestion>
             {
                 posts.map(post => <Question key={post.id} question={post.title}></Question>)
             }
@@ -29,7 +31,6 @@ export default function Home() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: 'lightblue',
         alignItems: 'center',
         justifyContent: 'center',

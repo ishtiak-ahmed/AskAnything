@@ -15,9 +15,12 @@ export default function Welcome() {
             body: JSON.stringify({ email, password })
         }).then(res => res.json())
             .then(data => {
-                setUser(data)
+                if (data) {
+                    setUser(data)
+                    setPage('home')
+                }
                 console.log(data)
-            }).then(() => setPage('home'))
+            })
     }
     return (
         <View style={styles.container}>
@@ -26,10 +29,8 @@ export default function Welcome() {
             <Text>Enter your email :</Text>
             <TextInput style={styles.input} placeholder='email' onChangeText={text => setEmail(text)}></TextInput>
             <Text>Enter your password :</Text>
-            <TextInput style={styles.input} placeholder='password' type="password" onChangeText={text => setPassword(text)}></TextInput>
-            <Button onPress={() => handleLogin()}>
-                <Text>Continue</Text>
-                Continue
+            <TextInput style={styles.input} secureTextEntry={true} placeholder='password' type="password" onChangeText={text => setPassword(text)}></TextInput>
+            <Button onPress={() => handleLogin()} title="Login">
             </Button>
         </View>
     );
