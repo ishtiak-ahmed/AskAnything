@@ -15,9 +15,10 @@ export default function Home() {
 
     return (
         <View style={styles.container}>
-
-            <Text style={{ fontSize: '30px', margin: '20px' }}>AskAnything</Text>
-            <Text style={{ fontSize: '30px', margin: '20px' }}>Welcome back {name}</Text>
+            <View style={styles.navbar}>
+                <Text style={{ fontSize: '20px', flex: '1', marginRight: '2em' }}>AskAnything</Text>
+                <Text style={{ fontSize: '20px', flex: '1' }}>{name}</Text>
+            </View>
             {
                 posts.map(post => <Question key={post.id} question={post.title}></Question>)
             }
@@ -28,10 +29,16 @@ export default function Home() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: 'lightblue',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: '30px'
+        fontSize: '30px',
+        padding: '10px'
+    },
+    navbar: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     input: {
         borderColor: 'lightgray',

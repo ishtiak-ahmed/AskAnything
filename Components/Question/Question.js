@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 
 export default function Question({ question }) {
     return (
         <View>
             <Text >What are the advantage fo React Native? {question}</Text>
-            <View >
+            <View style={styles.buttonGroup}>
                 <button>UpVote</button>
                 <button>DownVote</button>
                 <button>Reply</button>
@@ -13,3 +13,18 @@ export default function Question({ question }) {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    buttonGroup: {
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor: 'lightblue',
+        alignItems: 'center',
+        fontSize: '30px'
+    },
+    input: {
+        borderColor: 'lightgray',
+        border: '1px solid gray',
+        padding: '5px 10px'
+    }
+});
