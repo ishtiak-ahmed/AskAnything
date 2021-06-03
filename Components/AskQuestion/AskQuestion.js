@@ -25,15 +25,8 @@ export default function AskQuestion() {
     }
     return (
         <View>
-            <Button onPress={() => setAddQuestion(!addQuestion)} title="Ask A Question">Ask A Question</Button>
-            {
-                addQuestion ?
-                    <>
-                        <TextInput style={styles.input} onChangeText={text => setNewQuestion(text)} placeholder='enter your question'></TextInput>
-                        <Button onPress={handleAsk} title='Ask'></Button>
-                    </> : ""
-            }
-            <Text></Text>
+            <TextInput onChangeText={(text) => setNewQuestion(text)} placeholder="Enter your question"></TextInput>
+            <Button onPress={() => handleAsk()} title='Add Question'></Button>
         </View>
     )
 }

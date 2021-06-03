@@ -7,13 +7,13 @@ import Question from '../Question/Question';
 
 export default function Home() {
     const [user, setUser, modify, setModify] = useContext(userContext)
-    const [posts, setPosts] = useState([])
+    const [questions, setQuestions] = useState([])
     useEffect(() => {
         fetch('https://ishtiak-blog.herokuapp.com/allQuestions')
             .then(res => res.json())
             .then(data => {
                 if (data) {
-                    setPosts(data)
+                    setQuestions(data)
                     setModify(modify + 1)
                 }
             }
@@ -29,7 +29,7 @@ export default function Home() {
             </View>
             <AskQuestion></AskQuestion>
             {
-                posts.map(post => <Question key={post._id} question={post.content}></Question>)
+                questions.map(question => <Question key={question._id} question={question}></Question>)
             }
         </View>
     );

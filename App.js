@@ -5,10 +5,9 @@ import Home from './Components/Home/Home';
 import Welcome from './Components/Welcome/Welcome';
 
 export const userContext = createContext()
-export const ModifyContext = createContext()
 
 export default function App() {
-  const [modify, setModify] = useState(0)
+  const [modify, setModify] = useState(1)
   const [user, setUser] = useState({})
   const [page, setPage] = useState('welcome')
   return (
