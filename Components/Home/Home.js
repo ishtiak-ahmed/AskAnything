@@ -6,24 +6,30 @@ import AskQuestion from '../AskQuestion/AskQuestion';
 import Question from '../Question/Question';
 
 export default function Home() {
-    const [user, setUser] = useContext(userContext)
+    const [user, setUser, modify, setModify] = useContext(userContext)
     const [posts, setPosts] = useState([])
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch('https://ishtiak-blog.herokuapp.com/allQuestions')
             .then(res => res.json())
-            .then(data => setPosts(data.slice(0, 10)))
-    }, [])
+            .then(data => {
+                if (data) {
+                    setPosts(data)
+                    setModify(modify + 1)
+                }
+            }
+            )
+    }, [modify])
 
     return (
         <View style={styles.container}>
             <View style={styles.navbar}>
-                <Text style={{ fontSize: '20px', flex: 1, marginRight: '2em' }}>AskAnything</Text>
-                <Text style={{ fontSize: '20px', flex: 1 }}>{user.fullName}</Text>
+                <Text style={{ fontSize: 20, flex: 1, marginRight: '2em' }}>AskAnything</Text>
+                <Text style={{ fontSize: 20, flex: 1 }}>{user.fullName}</Text>
                 <Image source={{ uri: user.photo }} style={{ height: '50px', width: '50px', borderRadius: '50%' }}></Image>
             </View>
             <AskQuestion></AskQuestion>
             {
-                posts.map(post => <Question key={post.id} question={post.title}></Question>)
+                posts.map(post => <Question key={post._id} question={post.content}></Question>)
             }
         </View>
     );
@@ -34,8 +40,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightblue',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: '30px',
-        padding: '10px'
+        fontSize: 30,
+        // padding: '10px'
     },
     navbar: {
         flex: 1,
@@ -43,8 +49,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     input: {
-        borderColor: 'lightgray',
-        border: '1px solid gray',
-        padding: '5px 10px'
+        // borderColor: 'lightgray',
+        // padding: '5px 10px'
     }
 });

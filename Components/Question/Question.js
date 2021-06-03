@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, TextInput } from 'react-native'
 
 export default function Question({ question }) {
     return (
@@ -10,6 +10,7 @@ export default function Question({ question }) {
                 <button>DownVote</button>
                 <button>Reply</button>
             </View>
+            <TextInput placeholder='ans'></TextInput>
         </View>
     )
 }
@@ -20,11 +21,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: 'lightblue',
         alignItems: 'center',
-        fontSize: '30px'
+        fontSize: 30
     },
     input: {
-        borderColor: 'lightgray',
-        border: '1px solid gray',
-        padding: '5px 10px'
+        // borderColor: 'lightgray',
+        // padding: '5px 10px'
     }
 });

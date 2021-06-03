@@ -42,13 +42,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#F3F3F3',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: '30px',
-        padding: '10px'
+        fontSize: 30,
+        padding: 10
     },
     input: {
-        border: '1px solid lightgray',
-        padding: '10px',
-        borderRadius: '5px',
-        outline: 'none'
+        // border: '1px solid lightgray',
+        // padding: '10px',
+        // borderRadius: '5px',
+        // outline: 'none'
     }
 });
