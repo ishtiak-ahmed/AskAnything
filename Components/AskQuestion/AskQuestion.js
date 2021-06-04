@@ -9,7 +9,7 @@ export default function AskQuestion() {
     const [newQuestion, setNewQuestion] = useState('')
     const handleAsk = () => {
         const question = {
-            _id: (new Date()).getTime(),
+            _id: `q${(new Date()).getTime()}`,
             content: newQuestion,
             asker: user.fullName,
             reply: [],

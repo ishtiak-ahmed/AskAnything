@@ -6,6 +6,7 @@ import NewReply from './NewReply'
 import Reply from './Reply'
 
 export default function Question({ question }) {
+    const [user] = useContext(userContext)
     const [showReply, setShowReply] = useState(false)
     const [modify, setModify] = useContext(ModifyContext)
     const [allAns, setAllAns] = useState([])
@@ -17,16 +18,56 @@ export default function Question({ question }) {
                 setAllAns(sorted)
             })
     }, [modify])
+
+    const handleUpVote = () => {
+        const newList = [...question.upVote, user.fullName]
+        console.log(newList, question._id)
+        fetch(`https://ishtiak-blog.herokuapp.com/updateQuetion/${question._id}`, {
+            method: 'PATCH',
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ upVote: newList })
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setModify(modify + 1)
+            })
+    }
+    const handleDownVote = () => {
+        const newList = [...question.downVote, user]
+        fetch(`https://ishtiak-blog.herokuapp.com/updateQuetion/${question._id}`, {
+            method: 'PATCH',
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ downVote: newList })
+        }).then(res => res.json())
+            .then(data => {
+                setModify(modify + 1)
+            })
+
+        console.log(newList)
+    }
+
     return (
         <View style={styles.container}>
             <View>
                 <Text>{question.content}</Text>
                 <Text style={styles.label}>by {question.asker}</Text>
             </View>
-            <View style={styles.buttonGroup}>
-                <Text style={styles.button} onPress={() => console.log('voting up')}>Up Vote</Text>
-                <Text style={{ backgroundColor: 'red', marginTop: 5, padding: 5, fontSize: 12, borderRadius: 5, color: 'white' }} onPress={() => console.log('voting Down')}>Down Vote</Text>
-                <Text style={styles.button} onPress={() => setShowReply(!showReply)}>Reply</Text>
+            <View style={{ flex: 1, flexDirection: 'row', }}>
+                <View style={{ width: 150, flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ backgroundColor: 'green', marginTop: 5, padding: 5, fontSize: 12, borderRadius: 5, color: 'white' }} onPress={handleUpVote}>Up Vote</Text>
+
+                    <Text style={{ fontSize: 16, marginLeft: 10 }}>{question.upVote.length}</Text>
+                </View>
+                <View style={{ width: 150, flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ backgroundColor: 'red', marginTop: 5, padding: 5, fontSize: 12, borderRadius: 5, color: 'white' }} onPress={handleDownVote}>Down Vote</Text>
+
+                    <Text style={{ fontSize: 16, marginLeft: 10 }}>{question.downVote.length}</Text>
+                </View>
+                <View style={{ width: 150, flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={styles.button} onPress={() => setShowReply(!showReply)}>Reply</Text>
+
+
+                </View>
             </View>
             <View>
                 {showReply ?
