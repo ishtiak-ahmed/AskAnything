@@ -2,27 +2,17 @@
 
 ## This is a Team Project for Building a simple React Native Apps
 
-## Work Plan-
+## Main Feature of the apps-
 
-    [x] Add Question
-    [ ] User Registration
-    [x] Add Reply
-    [ ] Up Vote
-    [ ] Down Vote
-    [x] User Login
+    - User Login System with node express server
+    - Add question
+    - Reply question
+    - Up vote a question
+    - Down vote a question
 
-### API Links-
+### Feature I might add later-
 
-    * all questions get method
-        https://ishtiak-blog.herokuapp.com/allQuestions
-    * add a question post {content, asker, reply, upvote, downvote}
-        https://ishtiak-blog.herokuapp.com/addQuestion
-    * get answer of a question param- question id
-        https://ishtiak-blog.herokuapp.com/getAnswer/:id
-
-    * add a answer {content, replier, questionId, upvote, downvote}
-        https://ishtiak-blog.herokuapp.com/addAnswer/
-    * update question (add upvote, downvote, answers)
-        https://ishtiak-blog.herokuapp.com/updateQuetion/id
-    * update question (add upvote, downvote)
-        https://ishtiak-blog.herokuapp.com/updateAnswer/id
+    - User Registration system
+    - top question
+    - Top answer
+    - Search Question
