@@ -13,38 +13,49 @@ export default function Question({ question }) {
             .then(replies => setAllAns(replies))
     }, [])
     return (
-        <View>
-            <Text >{question.content}</Text>
-            <Text>by {question.asker}</Text>
+        <View style={styles.container}>
+            <View>
+                <Text>{question.content}</Text>
+                <Text style={styles.label}>by {question.asker}</Text>
+            </View>
             <View style={styles.buttonGroup}>
-                <button>UpVote</button>
-                <button>DownVote</button>
+                <Button title="Up Vote"></Button>
+                <Button title="Up Vote"></Button>
                 <Button onPress={() => setShowReply(!showReply)} title='Reply'></Button>
             </View>
-            { showReply ?
-                <>
-                    <NewReply ques={question._id}></NewReply>
-                    {
-                        allAns.length ?
-                            allAns.map(ans => <Reply key={ans._id} ans={ans}></Reply>)
-                            : <Text>This question has 0 answer.</Text>
-                    }
-                </>
-                : <Text>No Reply</Text>}
+            <View>
+                {showReply ?
+                    <>
+                        <NewReply ques={question._id}></NewReply>
+                        {
+                            allAns.length ?
+                                allAns.map(ans => <Reply key={ans._id} ans={ans}></Reply>)
+                                : <Text>This question has 0 answer.</Text>
+                        }
+                    </>
+                    : <Text style={{ height: 1 }}></Text>}
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 10,
+        borderRadius: 5,
+        backgroundColor: '#00796B',
+        marginBottom: 15
+    },
     buttonGroup: {
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: 'lightblue',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        fontSize: 30
+        fontSize: 14
     },
-    input: {
-        // borderColor: 'lightgray',
-        // padding: '5px 10px'
+    label: {
+        fontSize: 14,
+        color: '#333'
     }
 });
