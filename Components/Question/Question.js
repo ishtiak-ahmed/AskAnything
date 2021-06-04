@@ -21,14 +21,12 @@ export default function Question({ question }) {
 
     const handleUpVote = () => {
         const newList = [...question.upVote, user.fullName]
-        console.log(newList, question._id)
         fetch(`https://ishtiak-blog.herokuapp.com/updateQuetion/${question._id}`, {
             method: 'PATCH',
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ upVote: newList })
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
                 setModify(modify + 1)
             })
     }
@@ -43,7 +41,6 @@ export default function Question({ question }) {
                 setModify(modify + 1)
             })
 
-        console.log(newList)
     }
 
     return (

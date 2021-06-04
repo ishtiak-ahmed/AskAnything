@@ -16,7 +16,6 @@ export default function AskQuestion() {
             upVote: [],
             downVote: []
         }
-        console.log(question)
         fetch('https://ishtiak-blog.herokuapp.com/addQuestion', {
             method: 'POST',
             headers: { "content-type": "application/json" },

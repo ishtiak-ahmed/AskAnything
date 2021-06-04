@@ -26,8 +26,6 @@ export default function Reply({ ans }) {
             .then(data => {
                 setModify(modify + 1)
             })
-
-        console.log(newList)
     }
     return (
         <View style={{ paddingLeft: 10 }}>

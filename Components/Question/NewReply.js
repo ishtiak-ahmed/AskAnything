@@ -15,7 +15,6 @@ export default function NewReply({ ques }) {
             downVote: [],
             parent: `${ques}`
         }
-        console.log(reply)
         fetch('https://ishtiak-blog.herokuapp.com/addAnswer/', {
             method: 'POST',
             headers: { "content-type": "application/json" },
