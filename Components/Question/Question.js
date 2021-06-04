@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { View, StyleSheet, Text, TextInput, Button } from 'react-native'
 import { ModifyContext, userContext } from '../../App'
+import { reverseArray } from '../Functions/Functions'
 import NewReply from './NewReply'
 import Reply from './Reply'
 
@@ -11,7 +12,10 @@ export default function Question({ question }) {
     useEffect(() => {
         fetch(`https://ishtiak-blog.herokuapp.com/getAnswer/${question._id}`)
             .then(res => res.json())
-            .then(replies => setAllAns(replies))
+            .then(replies => {
+                const sorted = reverseArray(replies)
+                setAllAns(sorted)
+            })
     }, [modify])
     return (
         <View style={styles.container}>
