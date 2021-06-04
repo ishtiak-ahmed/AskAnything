@@ -24,9 +24,9 @@ export default function AskQuestion() {
             .then(data => console.log(data))
     }
     return (
-        <View>
-            <TextInput onChangeText={(text) => setNewQuestion(text)} placeholder="Enter your question"></TextInput>
-            <Button onPress={() => handleAsk()} title='Add Question'></Button>
+        <View style={{ flex: 1 }}>
+            <TextInput style={styles.input} multiline={true} numberOfLines={2} onChangeText={(text) => setNewQuestion(text)} placeholder="Enter your question"></TextInput>
+            <Button style={styles.addButton} onPress={() => handleAsk()} title='Add Question'></Button>
         </View>
     )
 }
@@ -34,6 +34,15 @@ export default function AskQuestion() {
 const styles = StyleSheet.create({
     input: {
         padding: 10,
+        width: 300,
+        height: 60,
         borderRadius: 5,
+        backgroundColor: '#00796B',
+        color: 'white'
+    },
+    addButton: {
+        width: 100,
+        color: 'black',
+        backgroundColor: '#80CBC4'
     }
 });

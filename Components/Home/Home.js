@@ -14,7 +14,6 @@ export default function Home() {
             .then(data => {
                 if (data) {
                     setQuestions(data)
-                    setModify(modify + 1)
                 }
             }
             )
@@ -22,26 +21,31 @@ export default function Home() {
 
     return (
         <View style={styles.container}>
+            <StatusBar style={{ height: 30, backgroundColor: 'red' }}></StatusBar>
             <View style={styles.navbar}>
-                <Text style={{ fontSize: 20, flex: 1, marginRight: '2em' }}>AskAnything</Text>
-                <Text style={{ fontSize: 20, flex: 1 }}>{user.fullName}</Text>
-                <Image source={{ uri: user.photo }} style={{ height: '50px', width: '50px', borderRadius: '50%' }}></Image>
+                <Text style={{ fontSize: 20, flex: 1.5, lineHeight: 40, color: 'white' }}>AskAnything</Text>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <Text style={{ fontSize: 18, flex: 1, lineHeight: 40, color: 'white' }}>{user.fullName}</Text>
+                    <Image source={{ uri: user.photo }} style={{ height: 40, width: 40, borderRadius: 20 }}></Image>
+                </View>
             </View>
             <AskQuestion></AskQuestion>
-            {
+            {/* {
                 questions.map(question => <Question key={question._id} question={question}></Question>)
-            }
+            } */}
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'lightblue',
+        flex: 1,
+        backgroundColor: '#004D40',
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: 30,
-        padding: 10
+        padding: 10,
+        paddingTop: 25
     },
     navbar: {
         flex: 1,
