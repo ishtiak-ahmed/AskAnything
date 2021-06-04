@@ -26,8 +26,13 @@ export default function NewReply({ ques }) {
             })
     }
     return (
-        <View>
-            <TextInput onChangeText={text => setReplyText(text)} placeholder="Add a reply"></TextInput>
+        <View style={{ paddingTop: 10, paddingBottom: 10, marginBottom: 10 }}>
+            <TextInput
+                style={{ borderRadius: 5, borderColor: '#333', borderWidth: .5, padding: 5, marginBottom: 5 }}
+                onChangeText={text => setReplyText(text)} placeholder="Add a reply"
+            >
+
+            </TextInput>
             <Button onPress={handleReply} color="#004D40" title='Add Reply'></Button>
         </View>
     )
