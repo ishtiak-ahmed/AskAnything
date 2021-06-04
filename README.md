@@ -4,9 +4,9 @@
 
 ## Work Plan-
 
-    [ ] Add Question
+    [x] Add Question
     [ ] User Registration
-    [ ] Add Reply
+    [x] Add Reply
     [ ] Up Vote
     [ ] Down Vote
     [x] User Login
@@ -26,4 +26,3 @@
         https://ishtiak-blog.herokuapp.com/updateQuetion/id
     * update question (add upvote, downvote)
         https://ishtiak-blog.herokuapp.com/updateAnswer/id
-

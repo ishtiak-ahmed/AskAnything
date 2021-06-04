@@ -1,55 +1,59 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
-import { userContext } from '../../App';
+import { Button, Image, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ModifyContext, userContext } from '../../App';
 import AskQuestion from '../AskQuestion/AskQuestion';
+import { reverseArray } from '../Functions/Functions';
 import Question from '../Question/Question';
 
 export default function Home() {
-    const [user, setUser, modify, setModify] = useContext(userContext)
-    const [posts, setPosts] = useState([])
+    const [user, setUser] = useContext(userContext)
+    const [modify, setModify] = useContext(ModifyContext)
+    const [questions, setQuestions] = useState([])
     useEffect(() => {
         fetch('https://ishtiak-blog.herokuapp.com/allQuestions')
             .then(res => res.json())
             .then(data => {
                 if (data) {
-                    setPosts(data)
-                    setModify(modify + 1)
+                    const sortedData = reverseArray(data)
+                    setQuestions(sortedData)
                 }
             }
             )
     }, [modify])
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
+            <StatusBar style={{ height: 30, backgroundColor: 'red' }}></StatusBar>
             <View style={styles.navbar}>
-                <Text style={{ fontSize: 20, flex: 1, marginRight: '2em' }}>AskAnything</Text>
-                <Text style={{ fontSize: 20, flex: 1 }}>{user.fullName}</Text>
-                <Image source={{ uri: user.photo }} style={{ height: '50px', width: '50px', borderRadius: '50%' }}></Image>
+                <Text style={{ fontSize: 20, flex: 1.5, lineHeight: 40, color: 'white' }}>AskAnything</Text>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <Text style={{ fontSize: 18, flex: 1, lineHeight: 40, color: 'white' }}>{user.fullName}</Text>
+                    <Image source={{ uri: user.photo }} style={{ height: 40, width: 40, borderRadius: 20 }}></Image>
+                </View>
             </View>
             <AskQuestion></AskQuestion>
-            {
-                posts.map(post => <Question key={post._id} question={post.content}></Question>)
-            }
-        </View>
+            <View style={{ flex: 1, paddingBottom: 20 }}>
+                {
+                    questions.map(question => <Question key={question._id} question={question}></Question>)
+                }
+            </View>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'lightblue',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flex: 1,
+        backgroundColor: '#004D40',
         fontSize: 30,
-        padding: 10
+        padding: 10,
+        paddingTop: 25,
+        paddingBottom: 30
     },
     navbar: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-    },
-    input: {
-        // borderColor: 'lightgray',
-        // padding: '5px 10px'
     }
 });

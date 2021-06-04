@@ -8,7 +8,6 @@ export default function Welcome() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const handleLogin = () => {
-        console.log(email, password)
         fetch('https://ishtiak-blog.herokuapp.com/login', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
@@ -19,36 +18,54 @@ export default function Welcome() {
                     setUser(data)
                     setPage('home')
                 }
-                console.log(data)
             })
     }
     return (
         <View style={styles.container}>
-            <Text>Welcome to</Text>
-            <Text style={{ fontSize: '30px', margin: '20px' }}>AskAnything</Text>
-            <Text>Enter your email :</Text>
+            <Text style={{ fontSize: 25 }}>Welcome to</Text>
+            <Text style={{ fontSize: 40, margin: 20 }}>AskAnything</Text>
+            <Text style={styles.label}>Enter your email :</Text>
             <TextInput style={styles.input} placeholder='email' onChangeText={text => setEmail(text)}></TextInput>
-            <Text>Enter your password :</Text>
+            <Text style={styles.label}>Enter your password :</Text>
             <TextInput style={styles.input} secureTextEntry={true} placeholder='password' type="password" onChangeText={text => setPassword(text)}></TextInput>
-            <Button onPress={() => handleLogin()} title="Login">
-            </Button>
+            <View style={styles.loginBtn}>
+                <Button onPress={() => handleLogin()} title="Login" color='#DD2C00'>
+                </Button>
+            </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
+        height: '100%',
         flex: 1,
-        backgroundColor: '#F3F3F3',
+        backgroundColor: '#26A69A',
         alignItems: 'center',
         justifyContent: 'center',
+        textAlign: 'left',
         fontSize: 30,
         padding: 10
     },
     input: {
-        // border: '1px solid lightgray',
-        // padding: '10px',
-        // borderRadius: '5px',
-        // outline: 'none'
+        fontSize: 16,
+        textAlign: 'left',
+        width: 250,
+        borderWidth: .5,
+        padding: 5,
+        paddingLeft: 15,
+        borderRadius: 5,
+        borderColor: '#333',
+        marginBottom: 10
+    },
+    label: {
+        fontSize: 20,
+        width: 250,
+        textAlign: 'left',
+        marginBottom: 5
+    },
+    loginBtn: {
+        borderRadius: 5,
+        flexDirection: 'row'
     }
 });
