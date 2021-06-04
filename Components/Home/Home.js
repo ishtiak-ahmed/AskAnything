@@ -26,9 +26,9 @@ export default function Home() {
         <ScrollView style={styles.container}>
             <StatusBar style={{ height: 30, backgroundColor: 'red' }}></StatusBar>
             <View style={styles.navbar}>
-                <Text style={{ fontSize: 20, flex: 1.5, lineHeight: 40, color: 'white' }}>AskAnything</Text>
+                <Text style={{ fontSize: 20, flex: 1, lineHeight: 40, color: 'white' }}>AskAnything</Text>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <Text style={{ fontSize: 18, flex: 1, lineHeight: 40, color: 'white' }}>{user.fullName}</Text>
+                    <Text style={{ fontSize: 16, flex: 1, lineHeight: 40, color: 'white' }}>{user.fullName}</Text>
                     <Image source={{ uri: user.photo }} style={{ height: 40, width: 40, borderRadius: 20 }}></Image>
                 </View>
             </View>
