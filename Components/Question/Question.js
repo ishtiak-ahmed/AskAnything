@@ -1,17 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { View, StyleSheet, Text, TextInput, Button } from 'react-native'
-import { userContext } from '../../App'
+import { ModifyContext, userContext } from '../../App'
 import NewReply from './NewReply'
 import Reply from './Reply'
 
 export default function Question({ question }) {
     const [showReply, setShowReply] = useState(false)
+    const [modify, setModify] = useContext(ModifyContext)
     const [allAns, setAllAns] = useState([])
     useEffect(() => {
         fetch(`https://ishtiak-blog.herokuapp.com/getAnswer/${question._id}`)
             .then(res => res.json())
             .then(replies => setAllAns(replies))
-    }, [])
+    }, [modify])
     return (
         <View style={styles.container}>
             <View>
@@ -19,9 +20,9 @@ export default function Question({ question }) {
                 <Text style={styles.label}>by {question.asker}</Text>
             </View>
             <View style={styles.buttonGroup}>
-                <Button title="Up Vote"></Button>
-                <Button title="Up Vote"></Button>
-                <Button onPress={() => setShowReply(!showReply)} title='Reply'></Button>
+                <Text style={styles.button} onPress={() => console.log('voting up')}>Up Vote</Text>
+                <Text style={{ backgroundColor: 'red', marginTop: 5, padding: 5, fontSize: 12, borderRadius: 5, color: 'white' }} onPress={() => console.log('voting Down')}>Down Vote</Text>
+                <Text style={styles.button} onPress={() => setShowReply(!showReply)}>Reply</Text>
             </View>
             <View>
                 {showReply ?
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         borderRadius: 5,
-        backgroundColor: '#00796B',
+        backgroundColor: '#4DB6AC',
         marginBottom: 15
     },
     buttonGroup: {
@@ -57,5 +58,13 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 14,
         color: '#333'
+    },
+    button: {
+        borderRadius: 5,
+        backgroundColor: '#004D40',
+        padding: 5,
+        fontSize: 12,
+        marginTop: 5,
+        color: 'white'
     }
 });

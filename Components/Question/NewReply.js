@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { View, Text, TextInput, Button } from 'react-native'
-import { userContext } from '../../App'
+import { ModifyContext, userContext } from '../../App'
 
 export default function NewReply({ ques }) {
     const [replyText, setReplyText] = useState('')
     const [user, setUser] = useContext(userContext)
+    const [modify, setModify] = useContext(ModifyContext)
     const handleReply = () => {
         const reply = {
             _id: `ans${(new Date()).getTime()}`,
@@ -21,13 +22,13 @@ export default function NewReply({ ques }) {
             body: JSON.stringify(reply)
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
+                setModify(modify + 1)
             })
     }
     return (
         <View>
             <TextInput onChangeText={text => setReplyText(text)} placeholder="Add a reply"></TextInput>
-            <Button onPress={handleReply} title='Add Reply'></Button>
+            <Button onPress={handleReply} color="#004D40" title='Add Reply'></Button>
         </View>
     )
 }
